@@ -1,0 +1,22 @@
+version: "2"
+
+volumes:
+  service_modules:
+  mongo-data:
+    driver: local
+
+services:
+  zookeper:
+    image: zookeeper
+    restart: always
+    hostname: zoo1
+    ports:
+      - 2182:2181
+  MongoDb:
+    image: mongo:3.4
+    ports:
+      - 27017:27017
+    environment:
+      EXAMPLE_DATABASE: mongodb://MongoDB/dang-db
+    volumes:
+      - mongo-data:/data/db
